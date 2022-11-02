@@ -3,6 +3,7 @@ package com.zz.test.controller;
 import com.zz.test.entity.UserEntity;
 import com.zz.test.service.UserService;
 import com.zz.test.utils.JsonResult;
+import com.zz.test.utils.R;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -26,13 +27,20 @@ public class UserController {
         return new JsonResult(code, msg, userList);
     }
 
+//    @PostMapping("/getAll")
+//    public JsonResult getAll() {
+//        List<UserEntity> userList = userService.getAll();
+//        code = "0";
+//        msg = "操作成功";
+//        return new JsonResult(code, msg, userList);
+//    }
+
     @PostMapping("/getAll")
-    public JsonResult getAll() {
+    public R getAll() {
         List<UserEntity> userList = userService.getAll();
-        code = "0";
-        msg = "操作成功";
-        return new JsonResult(code, msg, userList);
+        return R.ok().data("items", userList);
     }
+
 
     @PostMapping("/addUser")
     public JsonResult addUer(@RequestBody UserEntity user) {
